@@ -11,6 +11,7 @@ app.use(express.static(path.join(__dirname,'build')));
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
+
 mongoose.connect(process.env.ATLAS_URI, {
     useNewUrlParser: true, 
     useUnifiedTopology: true,
@@ -76,5 +77,5 @@ if (process.env.NODE_ENV === 'production') {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
-  console.log(`Example app listening at http://localhost:${PORT}`);
+  console.log(`App listening at http://localhost:${PORT}`);
 });
