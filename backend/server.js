@@ -65,7 +65,7 @@ app.post("/delete", function(req,res){
     });
 });
 
-app.use('/api', scripturesRoute);
+app.use('/scriptures', scripturesRoute);
 
 if (process.env.NODE_ENV === 'production') {           
   app.use(express.static('front-end/build'));

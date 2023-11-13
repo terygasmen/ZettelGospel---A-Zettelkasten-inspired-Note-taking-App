@@ -2,7 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const router = express.Router();
 
-router.get('/api', async (req, res) => {
+router.get('/scriptures', async (req, res) => {
   try {
     const API_KEY = process.env.BIBLE_API_KEY;
     const response = await axios.get(`https://api.biblia.com/v1/bible/contents/LEB?key=${API_KEY}`);
