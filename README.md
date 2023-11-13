@@ -1,4 +1,6 @@
-Disclaimer: This is a website application by Therese Lee Gasmen for Fall 2023 CIT490 - Senior Project in BYU Idaho. The project proposal/brief can be viewed at: https://drive.google.com/file/d/1uewLu3nl7tOufab4s4nRJiyHDmY2wY91/view?usp=sharing
+Disclaimer: This is a website application by Therese Lee Gasmen for Fall 2023 CIT490 - Senior Project in BYU Idaho. 
+The app is at: https://zettelgospel-app.netlify.app/
+The project proposal/brief can be viewed at: https://drive.google.com/file/d/1uewLu3nl7tOufab4s4nRJiyHDmY2wY91/view?usp=sharing
 
 # ZettelGospel - Zettelkasten-inspired Note-taking and Reference/Citation Managing App for Gospel Scholars
 ZettelGospel is a Zettelkasten-inspired Note-taking and Reference/Citation Managing App for Gospel Scholars. This application is made using MERN stack with the help of Biblia API for the Bible library component.
