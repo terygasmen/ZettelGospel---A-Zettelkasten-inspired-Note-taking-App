@@ -11,6 +11,14 @@ const path =require("path");
 const app = express();
 const scripturesRoute = require('./routes/scriptures');
 
+const corsOptions = {
+    origin: 'https://zettelgospel.onrender.com',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  };
+  
+app.use(cors(corsOptions));
+
 mongoose.set('strictQuery', false);
 
 app.use(express.static(path.join(__dirname,'build')));
