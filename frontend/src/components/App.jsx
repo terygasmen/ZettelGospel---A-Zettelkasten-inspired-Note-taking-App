@@ -8,7 +8,7 @@ import Stacks from "./Stacks";
 import axios from "axios";
 import Library from "./Library";
 
-const url = 'https://zettelgospel.onrender.com';
+const url = window.location.href;
 
 function App() {
   const [showLibrary, setShowLibrary] = useState(false);
@@ -42,6 +42,7 @@ function App() {
   useEffect(() => {
     axios.get(url + "notes")
       .then((res) => {
+        console.log(res.data);
         const filteredNotes = res.data.filter((note) =>
           note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           note.content.toLowerCase().includes(searchTerm.toLowerCase())
