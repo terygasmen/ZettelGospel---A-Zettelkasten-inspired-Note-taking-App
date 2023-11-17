@@ -8,7 +8,7 @@ import Stacks from "./Stacks";
 import axios from "axios";
 import Library from "./Library";
 
-const url = window.location.href;
+const url = 'https://zettelgospel.onrender.com';
 
 function App() {
   const [showLibrary, setShowLibrary] = useState(false);
