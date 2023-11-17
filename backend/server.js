@@ -1,3 +1,7 @@
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+  });  
+
 require('dotenv').config()
 const express = require("express");
 const mongoose = require("mongoose");
@@ -6,6 +10,8 @@ const cors = require("cors");
 const path =require("path");
 const app = express();
 const scripturesRoute = require('./routes/scriptures');
+
+mongoose.set('strictQuery', false);
 
 app.use(express.static(path.join(__dirname,'build')));
 app.use(express.json());
