@@ -89,6 +89,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, HOST, function() {
+app.listen(PORT, function() {
   console.log(`App listening at http://localhost:${PORT}`);
 });
