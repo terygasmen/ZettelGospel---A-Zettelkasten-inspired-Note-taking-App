@@ -11,7 +11,7 @@ const path =require("path");
 const app = express();
 const scripturesRoute = require('./routes/scriptures');
   
-app.use(cors(corsOptions));
+app.use(cors());
 
 mongoose.set('strictQuery', false);
 
