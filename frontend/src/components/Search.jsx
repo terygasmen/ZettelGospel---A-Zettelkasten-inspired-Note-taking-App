@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 
 const Search = ({ onSearch }) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const searchRef = useRef(null);
 
   const handleKeyPress = (event) => {

@@ -16,6 +16,13 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isTableView, setIsTableView] = useState(false);
   const [isStackView, setIsStackView] = useState(false);
+  const [selectedNoteId, setSelectedNoteId] = useState(null);
+  const [selectedNote, setSelectedNote] = useState(null);
+
+
+  const handleNoteSelected = (noteId) => {
+    setSelectedNoteId(noteId);
+  };
 
   const handleSearch = (term) => {
     setSearchTerm(term);
@@ -38,14 +45,31 @@ function App() {
     setIsTableView(false);
     setIsStackView(false);
   };
+
+  const fetchNoteById = async (noteId) => {
+    try {
+      const response = await axios.get(`${url}/notes/${noteId}`);
+      setSelectedNote(response.data); // Set the selected note
+    } catch (error) {
+      console.error("Error fetching note by ID:", error);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    if (selectedNoteId) {
+      fetchNoteById(selectedNoteId);
+    }
+  }, [selectedNoteId]);
   
   useEffect(() => {
-    axios.get(url + "notes")
+    axios.get(`${url}/notes`)
       .then((res) => {
         console.log(res.data);
         const filteredNotes = res.data.filter((note) =>
           note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          note.content.toLowerCase().includes(searchTerm.toLowerCase())
+          note.content.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          note.address.toLowerCase().includes(searchTerm.toLowerCase())
         );
         setNotes(filteredNotes);
       })
@@ -53,18 +77,24 @@ function App() {
         console.error("Error fetching notes:", err);
       });
   }, [searchTerm]);
-
+  
 
   function addNote(note) {
-    setNotes((prevValue) => [...prevValue, note]);
-    axios.post(url + "add", note)
+    axios.post(`${url}/notes/add`, note)
+      .then((response) => {
+        setNotes((prevValue) => [...prevValue, response.data]);
+        console.log("Note added successfully");
+      })
       .catch((err) => console.error("Error adding note:", err));
-  }
-
+  } 
+  
   function deleteNote(id) {
-    const updatedList = listNotes.filter((note) => note._id !== id);
-    setNotes(updatedList);
-    axios.post(url + "delete", { idNote: id })
+    axios.delete(`${url}/notes/delete`, { data: { idNote: id } })
+      .then(() => {
+        const updatedList = listNotes.filter((note) => note._id !== id);
+        setNotes(updatedList);
+        console.log("Note deleted successfully");
+      })
       .catch((err) => console.error("Error deleting note:", err));
   }
 
@@ -78,7 +108,7 @@ function App() {
       {showLibrary && <Library />}
       {!showLibrary && (
         <>
-          <Search onSearch={handleSearch} />
+          <Search onSearch={(term) => setSearchTerm(term)} />
           {isTableView ? (
             <Table
               notes={listNotes.filter((note) =>
@@ -92,6 +122,9 @@ function App() {
               notes={listNotes}
               addNote={addNote}
               deleteNote={deleteNote}
+              selectedNoteId={selectedNoteId}
+              onNoteSelected={handleNoteSelected}
+              selectedNote={selectedNote}
             />
           )}
           <Footer />

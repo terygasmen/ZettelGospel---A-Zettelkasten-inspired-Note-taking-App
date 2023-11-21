@@ -1,7 +1,3 @@
-process.on('unhandledRejection', (reason, promise) => {
-    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  });  
-
 require('dotenv').config()
 const express = require("express");
 const mongoose = require("mongoose");
@@ -10,6 +6,7 @@ const cors = require("cors");
 const path =require("path");
 const app = express();
 const scripturesRoute = require('./routes/scriptures');
+const notesRoute = require('./routes/notes');
   
 app.use(cors());
 
@@ -27,49 +24,7 @@ mongoose.connect(process.env.ATLAS_URI, {
 const db = mongoose.connection;
 db.once('open', () => console.log("Successfully Connected to Database"));
 
-const noteSchema = new mongoose.Schema({
-    title: { type: String },
-    content: { type: String, required: true },
-    address: { type: String, required: true },
-    citation: { type: String }
-}, {
-  timestamps: true,
-});
-
-const note = mongoose.model("note",noteSchema);
-
-app.get("/notes", function (req,res){
-    const searchTerm = req.query.q;
-    note.find((err,result) => {
-        if(err){
-            console.log(err);
-        } else{
-            res.json(result);
-            
-        }
-    });
-});
-
-app.post("/add", function(req,res){
-    const newNote = new note(req.body);
-    newNote.save();
-
-    console.log("New Note Added Successfully");
-    
-});
-
-app.post("/delete", function(req,res){
-    const id = req.body.idNote;
-    note.findByIdAndDelete(id, (err) => {
-        if(err){
-            console.log(err);
-        } else{
-            console.log("Note Deleted Successfully");
-            
-        }
-    });
-});
-
+app.use('/notes', notesRoute);
 app.use('/scriptures', scripturesRoute);
 
 if (process.env.NODE_ENV === 'production') {           
