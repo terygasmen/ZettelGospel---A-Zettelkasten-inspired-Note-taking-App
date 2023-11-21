@@ -158,7 +158,7 @@ textarea {
   text-overflow: ellipsis;
 }
 .note-content {
-  overflow: scroll;
+  /* overflow: scroll; */
     width: 100%;
     height: 135px;
 }
