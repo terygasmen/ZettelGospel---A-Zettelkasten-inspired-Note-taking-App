@@ -1,7 +1,0 @@
-[build]
-  command = "npm install && npm run build"  # Adjust as per your project's build command
-  functions = "backend/"  # Adjust the path to your backend code
-  publish = "frontend/build"  # Adjust the path to your frontend build (if applicable)
-
-[dev]
-  functions = "backend/"  # Adjust the path to your backend code

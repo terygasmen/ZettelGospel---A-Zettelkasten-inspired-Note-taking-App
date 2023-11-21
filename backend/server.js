@@ -51,7 +51,6 @@ app.get("/notes", function (req,res){
 });
 
 app.post("/add", function(req,res){
-
     const newNote = new note(req.body);
     newNote.save();
 
@@ -60,7 +59,6 @@ app.post("/add", function(req,res){
 });
 
 app.post("/delete", function(req,res){
-
     const id = req.body.idNote;
     note.findByIdAndDelete(id, (err) => {
         if(err){
@@ -74,13 +72,13 @@ app.post("/delete", function(req,res){
 
 app.use('/scriptures', scripturesRoute);
 
-// if (process.env.NODE_ENV === 'production') {           
-//   app.use(express.static('front-end/build'));
+if (process.env.NODE_ENV === 'production') {           
+  app.use(express.static('front-end/build'));
 
-//   app.get('/', (req, res) => {
-//     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
-//    });
-// }
+  app.get('/', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+   });
+}
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
