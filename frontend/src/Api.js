@@ -9,6 +9,6 @@ export const getTableOfContents = async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching table of contents:', error);
-    throw error; // Handle the error in your component where you call this function
+    throw error; 
   }
 };

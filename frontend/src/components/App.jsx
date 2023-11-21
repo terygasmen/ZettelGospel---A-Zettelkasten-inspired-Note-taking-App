@@ -49,7 +49,7 @@ function App() {
   const fetchNoteById = async (noteId) => {
     try {
       const response = await axios.get(`${url}/notes/${noteId}`);
-      setSelectedNote(response.data); // Set the selected note
+      setSelectedNote(response.data); 
     } catch (error) {
       console.error("Error fetching note by ID:", error);
       throw error;
@@ -63,7 +63,7 @@ function App() {
   }, [selectedNoteId]);
   
   useEffect(() => {
-    axios.get(`${url}/notes`)
+    axios.get(`${url}notes`)
       .then((res) => {
         console.log(res.data);
         const filteredNotes = res.data.filter((note) =>
