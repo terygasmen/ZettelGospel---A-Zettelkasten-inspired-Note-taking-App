@@ -63,7 +63,7 @@ function App() {
   }, [selectedNoteId]);
   
   useEffect(() => {
-    axios.get(`${url}notes`)
+    axios.get(`${url}/notes`)
       .then((res) => {
         console.log(res.data);
         const filteredNotes = res.data.filter((note) =>
