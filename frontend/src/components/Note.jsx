@@ -11,9 +11,6 @@ function parseNoteContent(content, onLinkClick) {
   while ((match = linkRegex.exec(content)) !== null) {
     const linkedNoteTitle = match[1];
     const linkIndex = match.index;
-    
-    console.log(`Title: ${linkedNoteTitle}`);
-    console.log(`Generated Link: /notes/${encodeURIComponent(linkedNoteTitle)}`);
 
     elements.push(content.substring(lastIndex, linkIndex));
 
