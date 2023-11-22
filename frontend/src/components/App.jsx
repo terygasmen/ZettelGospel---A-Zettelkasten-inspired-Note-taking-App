@@ -68,7 +68,7 @@ function App() {
   }, [selectedNoteId]);
   
   useEffect(() => {
-    axios.get(`${baseUrl}/notes`)
+    axios.get(new URL("/notes", baseUrl).toString())
       .then((res) => {
         console.log(res.data);
         const filteredNotes = res.data.filter((note) =>
