@@ -8,8 +8,6 @@ import Stacks from "./Stacks";
 import axios from "axios";
 import Library from "./Library";
 
-const url = window.location.href;
-
 function App() {
   const [showLibrary, setShowLibrary] = useState(false);
   const [listNotes, setNotes] = useState([]);
@@ -18,6 +16,13 @@ function App() {
   const [isStackView, setIsStackView] = useState(false);
   const [selectedNoteId, setSelectedNoteId] = useState(null);
   const [selectedNote, setSelectedNote] = useState(null);
+
+  const url = new URL(window.location.href);
+  const baseUrl = url.origin;
+
+  useEffect(() => {
+    console.log(baseUrl);
+  }, [baseUrl]); 
 
 
   const handleNoteSelected = (noteId) => {
@@ -48,7 +53,7 @@ function App() {
 
   const fetchNoteById = async (noteId) => {
     try {
-      const response = await axios.get(`${url}/notes/${noteId}`);
+      const response = await axios.get(`${baseUrl}/notes/${noteId}`);
       setSelectedNote(response.data); 
     } catch (error) {
       console.error("Error fetching note by ID:", error);
@@ -63,7 +68,7 @@ function App() {
   }, [selectedNoteId]);
   
   useEffect(() => {
-    axios.get(`${url}/notes`)
+    axios.get(`${baseUrl}/notes`)
       .then((res) => {
         console.log(res.data);
         const filteredNotes = res.data.filter((note) =>
@@ -80,7 +85,7 @@ function App() {
   
 
   function addNote(note) {
-    axios.post(`${url}/notes/add`, note)
+    axios.post(`${baseUrl}/notes/add`, note)
       .then((response) => {
         setNotes((prevValue) => [...prevValue, response.data]);
         console.log("Note added successfully");
@@ -89,7 +94,7 @@ function App() {
   } 
   
   function deleteNote(id) {
-    axios.delete(`${url}/notes/delete`, { data: { idNote: id } })
+    axios.delete(`${baseUrl}/notes/delete`, { data: { idNote: id } })
       .then(() => {
         const updatedList = listNotes.filter((note) => note._id !== id);
         setNotes(updatedList);
