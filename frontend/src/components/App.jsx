@@ -22,7 +22,11 @@ function App() {
 
   useEffect(() => {
     console.log(baseUrl);
-  }, [baseUrl]); 
+  }, [baseUrl]);
+  
+  useEffect(() => {
+    console.log('Constructed URL for notes:', `${baseUrl}/notes`);
+  }, [searchTerm]);
 
 
   const handleNoteSelected = (noteId) => {
@@ -68,7 +72,7 @@ function App() {
   }, [selectedNoteId]);
   
   useEffect(() => {
-    axios.get(new URL("/notes", baseUrl).toString())
+    axios.get(`${baseUrl}/notes`)
       .then((res) => {
         console.log(res.data);
         const filteredNotes = res.data.filter((note) =>
