@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import Footer from "./Footer";
 import Search from "./Search";
 import NotesList from "./NotesList";
 import Table from "./Table";
@@ -136,7 +135,6 @@ function App() {
               selectedNote={selectedNote}
             />
           )}
-          <Footer />
         </>
       )}
     </div>

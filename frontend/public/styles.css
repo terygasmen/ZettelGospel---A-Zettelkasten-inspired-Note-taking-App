@@ -10,9 +10,9 @@
 }
 
 /* GLOBAL */
-* {
+/* * {
   box-sizing: content-box;
-}
+} */
 body {
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -54,23 +54,6 @@ button {
   border-right: 1.5px solid var(--gray);
 }.header .menu-item {
   padding: 0.6rem 0;
-}
-
-/* FOOTER */
-footer {
-  position: fixed;
-  text-align: center;
-  bottom: 0;
-  width: 100%;
-  height: 2.5rem;
-  background-color: var(--black);
-  padding-top: 0.5em;
-}
-
-footer p {
-  color: #ccc;
-  font-size: smaller;
-  font-style: italic;
 }
 
 /* NOTE LIST */
@@ -133,48 +116,48 @@ textarea {
 }.note input:focus {
 	outline: none;
 }
-.note-body {
+/* .note-body {
   display: flex;
   flex-direction: column;
-}
+} */
 .note-header {
   display: flex;
   justify-content: space-between;
   padding-bottom: 0.5rem;
-  align-items: center;
+  /* align-items: center; */
 }
 .note-address {
   font-size: large;
   font-weight: bold;
-  padding-right: 1.5rem
+  /* padding-right: 1.5rem; */
 }
 .note-title {
   font-size: small;
   text-align: right;
   font-weight: bold;
-  white-space: nowrap;
+  /* white-space: nowrap;
   width: 280px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 .note-content {
-  /* overflow: scroll; */
-    width: 100%;
-    height: 135px;
+  overflow: scroll;
+    /* width: 100%;
+    height: 135px; */
 }
 .note-citation {
   font-style: italic;
-  white-space: nowrap;
+  /* white-space: nowrap;
   width: 280px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  text-overflow: ellipsis; */
 }
 .note-footer {
 	display: flex;
-	align-items: end;
+	align-items: center;
 	justify-content: space-between;
-  overflow: hidden;
-  min-height: 2rem;
+  /* overflow: hidden;
+  min-height: 2rem; */
 }
 
 /* SEARCH */
@@ -218,7 +201,6 @@ textarea {
 
 /* STACKS */
 .stacked-note {
-  /* Your existing card styles */
   width: auto;
   height: 200px;
   box-shadow: 3px 2px 5px rgba(0, 0, 0, 0.2);
@@ -245,7 +227,6 @@ textarea {
 }
 
 /* SCRIPTURE LIBRARY */
-/* Common styles for lists */
 .table-of-contents, .chapters, .passages {
   list-style: none;
   margin: 0;

@@ -38,13 +38,11 @@ function Note(props) {
 
   return (
     <div className="note">
-      <section className="note-body">
         <section className="note-header">
           <span className='note-address'>{props.address}</span>
           <span className='note-title'>{props.title}</span> 
         </section>
       <span className='note-content'>{links}</span>
-      </section>
       <section className="note-footer">
         <small className='note-citation'>{props.citation}</small>
         <button onClick={() => { props.deleteNote(props.id); }}>
